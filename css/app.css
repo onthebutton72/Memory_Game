@@ -15,3 +15,11 @@ h1{
   box-shadow: 20px 20px 10px grey;
   background: linear-gradient(lightgreen, lightblue);
 }
+
+.clock {
+  font-size: 1em;
+}
+
+.moves {
+  font-size: 1em;
+}
