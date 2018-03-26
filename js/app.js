@@ -1,7 +1,7 @@
 // Array of cards
 var cards = [1,1,2,2,3,3,4,4,5,5,6,6];
 var matchArray = [];
-
+var moves = 0;
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(cards) {
     var currentIndex = cards.length, temporaryValue, randomIndex;
@@ -33,10 +33,16 @@ function onClick(){
   });
 }
 
+//Function to count moves.
+function countMoves(){
+  moves = moves + 1;
+  document.getElementById('moves').innerHTML = moves;
+}
+
 // Function to check if all cards match => win game.
 function allMatch(){
   if($('.unchosen').length == 0){
-    $('.container').html('<h1>You Won the Game!</h1>');
+    $('#myModal').modal('show');
   }
 }
 
@@ -45,6 +51,7 @@ function matchCards(){
   var choices = 2;
   var hideCard = 0;
   if($('.chosen').length == choices){
+    countMoves();
     if ($('.chosen').first().data('card') == $('.chosen').last().data('card')){
       // Make chosen cards disappear.
       $('.chosen').each(function(){
@@ -65,7 +72,36 @@ function matchCards(){
   }
 }
 
+// Function to restart the game.
+function restartGame(){
+  location.reload();
+}
+
+// Function to add a leading zero to the time when necessary.
+function addZero(timeDisplay) {
+  if (timeDisplay < 10) {
+    timeDisplay = '0' + timeDisplay
+  }
+  return timeDisplay;
+}
+
+// Function for game timer
+function clock() {
+  var time = new Date()
+  var hours = time.getHours()
+  var minutes = time.getMinutes()
+  var seconds = time.getSeconds()
+  var timeOfDay = hours >= 12 ? 'PM' : "AM";
+
+  hours = hours % 12;
+  hours = hours ? hours : 12;
+
+  document.querySelectorAll('.clock')[0].innerHTML = addZero(hours) + ":"
+  + addZero(minutes) + ":" + addZero(seconds) + ' ' + timeOfDay;
+}
+
 // Run the methods
 shuffle(cards);
 mapToCards();
 onClick();
+setInterval(clock, 1000);

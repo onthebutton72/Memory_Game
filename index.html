@@ -6,8 +6,21 @@
     <meta name="description" content="Matching Game">
     <link rel="stylesheet" href="css/app.css">
     <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
 </head>
 <body>
+    <!-- Button that restarts the game-->
+    <button class="btn btn-default" onclick = "restartGame()">Restart Game</button>
+
+    <!-- Clock timer -->
+    <div class="clock"></div>
+
+    <!-- Moves counter -->
+    <div class = 'moves' id="moves"></div>
+
+    <!-- Game cards -->
     <div class="container">
         <header>
             <h1>Matching Game</h1>
@@ -26,6 +39,26 @@
         <div class="card unchosen"></div>
     </div>
 
+    <!-- Modal - Congratulations you won the game. -->
+    <div class="modal fade" id="myModal" role="dialog">
+      <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Congratulations, You Won the Game!!!</h4>
+          </div>
+          <div class="modal-body">
+            <p>Would you like to play again?</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" onclick="restartGame()">Play Again</button>
+            <button type="button" class="btn btn-default"
+            data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
     <script src="js/app.js"></script>
 </body>
 </html>
