@@ -23,3 +23,7 @@ h1{
 .moves {
   font-size: 1em;
 }
+
+.buttons{
+  display: block;
+}
