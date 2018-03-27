@@ -2,6 +2,8 @@
 var cards = [1,1,2,2,3,3,4,4,5,5,6,6];
 var matchArray = [];
 var moves = 0;
+var totalSeconds = 0
+
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(cards) {
     var currentIndex = cards.length, temporaryValue, randomIndex;
@@ -43,6 +45,10 @@ function countMoves(){
 function allMatch(){
   if($('.unchosen').length == 0){
     $('#myModal').modal('show');
+    $('#myButtons').hide();
+    $('#myTitle').hide();
+    document.getElementById('finalMove').innerHTML = moves;
+    document.getElementById('finalTime').innerHTML = clock();
   }
 }
 
@@ -87,21 +93,22 @@ function addZero(timeDisplay) {
 
 // Function for game timer
 function clock() {
-  var time = new Date()
-  var hours = time.getHours()
-  var minutes = time.getMinutes()
-  var seconds = time.getSeconds()
-  var timeOfDay = hours >= 12 ? 'PM' : "AM";
+  totalSeconds = totalSeconds + 1;
+  var hours = Math.floor(totalSeconds /3600);
+  var minutes = Math.floor((totalSeconds - hours * 3600) / 60);
+  var seconds = totalSeconds - (hours * 3600 + minutes * 60);
 
-  hours = hours % 12;
-  hours = hours ? hours : 12;
-
-  document.querySelectorAll('.clock')[0].innerHTML = addZero(hours) + ":"
-  + addZero(minutes) + ":" + addZero(seconds) + ' ' + timeOfDay;
+  var finalTime = document.getElementById('timer').innerHTML = addZero(hours)
+  + ':' + addZero(minutes) + ':' + addZero(seconds);
+  return finalTime;
 }
 
+function main(){
 // Run the methods
-shuffle(cards);
-mapToCards();
-onClick();
-setInterval(clock, 1000);
+  shuffle(cards);
+  mapToCards();
+  onClick();
+  setInterval(clock, 1000);
+}
+
+main()
