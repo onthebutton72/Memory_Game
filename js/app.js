@@ -35,6 +35,18 @@ function onClick(){
   });
 }
 
+//Function to remove stars based on move count
+function removeStars(){
+  var list = document.getElementById("myStars");
+  if (moves < 6){
+  }else if (moves === 6){
+    list.removeChild(list.firstChild);
+  }else if (moves === 11){
+    list.removeChild(list.firstChild);
+  }else{
+  }
+}
+
 //Function to count moves.
 function countMoves(){
   moves = moves + 1;
@@ -58,6 +70,7 @@ function matchCards(){
   var hideCard = 0;
   if($('.chosen').length == choices){
     countMoves();
+    removeStars();
     if ($('.chosen').first().data('card') == $('.chosen').last().data('card')){
       // Make chosen cards disappear.
       $('.chosen').each(function(){
