@@ -1,5 +1,5 @@
 // Array of cards
-var cards = [1,1,2,2,3,3,4,4,5,5,6,6];
+var cards = [1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8];
 
 // Variable to count the number of moves.
 var moves = 0;
@@ -7,8 +7,11 @@ var moves = 0;
 // Variable used in clock function that gives total seconds elapsed.
 var totalSeconds = 0;
 
+// First click of the game.
+var startClick = 0;
+
 // Variable used in clock function that sets the interval of timer by 1 second.
-var interval = setInterval(clock, 1000);
+// var interval = setInterval(clock, 1000);
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(cards) {
@@ -38,7 +41,7 @@ function onClick(){
   $('.card').click(function(){
     $(this).html('<p>' + $(this).data('card') + '</p>').addClass('chosen');
     matchCards();
-  });
+  })
 }
 
 //Function to remove stars based on move count.
@@ -47,9 +50,9 @@ function removeStars(){
   var list = document.getElementById("myStars");
 
   // Variables for rating levels.
-  var highStar = 6;
-  var mediumStar = 7;
-  var lowStar = 11;
+  var highStar = 12;
+  var mediumStar = 15;
+  var lowStar = 18;
 
   if (moves < highStar){
   }else if (moves === mediumStar){
@@ -64,6 +67,9 @@ function removeStars(){
 function countMoves(){
   moves = moves + 1;
   document.getElementById('moves').innerHTML = moves;
+  if(moves == 1){
+    var interval = setInterval(clock, 1000);
+  }
 }
 
 // Function to check if all cards match => win game.
@@ -102,7 +108,7 @@ function matchCards(){
       $('.chosen').each(function(){
         $(this).removeClass('chosen');
       });
-      clearInterval(clock);
+//      clearInterval(clock);
       allMatch();
     }else{
       // Flip cards that do not match.
@@ -155,6 +161,6 @@ function main(){
   shuffle(cards);
   mapToCards();
   onClick();
-}
+  }
 
 main()

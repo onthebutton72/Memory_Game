@@ -2,19 +2,27 @@
 
 ## Table of Contents
 
-* [Instructions](#instructions)
-* [Contributing](#contributing)
+* [Overview](#overview)
+* [Setup](#setup)
+* [Features](#features)
+* [Dependencies](#dependencies)
+## Overview
 
-## Instructions
+This is a memory match game.  Find all the matches to win the game.  The game
+will track how long it takes you to complete all matches, how many tries and
+will assign a star rating based on your performance.
 
-The starter project has some HTML and CSS styling to display a static version of the Memory Game project. You'll need to convert this project from a static project to an interactive one. This will require modifying the HTML and CSS files, but primarily the JavaScript file.
+## Setup
 
-To get started, open `js/app.js` and start building out the app's functionality
+Setup is simple, to start the game just click on any two cards.  
 
-For specific, detailed instructions, look at the project instructions in the [Udacity Classroom](https://classroom.udacity.com/me).
+## Features
 
-## Contributing
+There is a restart button if you wish to play more than once.  As far as
+features go the cards will fade out when they are matched.
 
-This repository is the starter code for _all_ Udacity students. Therefore, we most likely will not accept pull requests.
-
-For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).
+## Dependencies
+This game has several dependencies.  JavaScript and JQuery were employed for
+the functionality of the game.  The Fisher-Yates function was used to shuffle
+the cards.  Bootstrap.min.css was used for the button style and for the star
+icons font-awesome.min.css was utilized.
