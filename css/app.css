@@ -1,13 +1,19 @@
+/* style for background*/
 body {
   background: url("../img/geometry2.png");
 }
 
 
-/* style for title header*/
+/* style for title header */
 .title {
   text-align: center;
   font-style: Jazz LET;
   color: lightgreen;
+}
+
+/* style for card container */
+.container {
+  max-width: 950px;
 }
 
 /* style for cards*/
@@ -23,28 +29,34 @@ body {
   background: linear-gradient(lightgreen, lightblue);
 }
 
+/* style for clock timer*/
 .clock {
   font-size: 1em;
 }
 
+/* stle for move count */
 .moves {
   font-size: 1em;
 }
 
+/* style for rating stars*/
 .stars {
   font-size: 1em;
 }
 
+/* style for buttons */
 .buttons {
   display: block;
   text-align: center;
 }
 
+/* style for all counters */
 .counters {
   display: block;
   text-align:center;
 }
 
+/* style for text */
 .bold {
   font-weight: bold;
 }
