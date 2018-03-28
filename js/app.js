@@ -7,11 +7,8 @@ var moves = 0;
 // Variable used in clock function that gives total seconds elapsed.
 var totalSeconds = 0;
 
-// First click of the game.
-var startClick = 0;
-
-// Variable used in clock function that sets the interval of timer by 1 second.
-// var interval = setInterval(clock, 1000);
+// Variable to store number of clicks in game.
+var clicks = 0;
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(cards) {
@@ -67,8 +64,14 @@ function removeStars(){
 function countMoves(){
   moves = moves + 1;
   document.getElementById('moves').innerHTML = moves;
-  if(moves == 1){
-    var interval = setInterval(clock, 1000);
+}
+
+//Function to count clicks and start game timer.
+function countClicks(){
+  clicks = clicks + 1;
+  console.log (clicks);
+  if (clicks === 1){
+    setInterval(clock, 1000);
   }
 }
 
@@ -85,7 +88,7 @@ function allMatch(){
     document.getElementById('finalTime').innerHTML = clock();
     document.getElementById('finalStars').innerHTML = $('#myStars i').length;
     // stop the clock timer.
-    clearInterval(interval);
+    clearInterval(clock);
   }
 }
 
@@ -96,7 +99,7 @@ function matchCards(){
 
   // Variable to hide card by setting to opacity zero.
   var hideCard = 0;
-
+  countClicks();
   if($('.chosen').length == choices){
     countMoves();
     removeStars();
@@ -108,7 +111,6 @@ function matchCards(){
       $('.chosen').each(function(){
         $(this).removeClass('chosen');
       });
-//      clearInterval(clock);
       allMatch();
     }else{
       // Flip cards that do not match.
@@ -140,7 +142,7 @@ function addZero(timeDisplay) {
   return timeDisplay;
 }
 
-// Function for game timer
+// Function for game timer.
 function clock() {
   totalSeconds++;
 
@@ -163,4 +165,5 @@ function main(){
   onClick();
   }
 
+//   var interval = setInterval(clock, 1000);
 main()
