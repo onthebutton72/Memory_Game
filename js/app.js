@@ -1,8 +1,14 @@
 // Array of cards
 var cards = [1,1,2,2,3,3,4,4,5,5,6,6];
-var matchArray = [];
+
+// Variable to count the number of moves.
 var moves = 0;
-var totalSeconds = 0
+
+// Variable used in clock function that gives total seconds elapsed.
+var totalSeconds = 0;
+
+// Variable used in clock function that sets the interval of timer by 1 second.
+var interval = setInterval(clock, 1000);
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(cards) {
@@ -35,13 +41,20 @@ function onClick(){
   });
 }
 
-//Function to remove stars based on move count
+//Function to remove stars based on move count.
 function removeStars(){
+  // Variable to get elements under id=myStars.
   var list = document.getElementById("myStars");
-  if (moves < 6){
-  }else if (moves === 6){
+
+  // Variables for rating levels.
+  var highStar = 6;
+  var mediumStar = 7;
+  var lowStar = 11;
+
+  if (moves < highStar){
+  }else if (moves === mediumStar){
     list.removeChild(list.firstChild);
-  }else if (moves === 11){
+  }else if (moves === lowStar){
     list.removeChild(list.firstChild);
   }else{
   }
@@ -56,18 +69,28 @@ function countMoves(){
 // Function to check if all cards match => win game.
 function allMatch(){
   if($('.unchosen').length == 0){
+    // Hide the buttons and counters on index.html.
     $('#myModal').modal('show');
     $('#myButtons').hide();
+    $('#myCounters').hide();
     $('#myTitle').hide();
+    // Send counters to index.html with Id='final...'
     document.getElementById('finalMove').innerHTML = moves;
     document.getElementById('finalTime').innerHTML = clock();
+    document.getElementById('finalStars').innerHTML = $('#myStars i').length;
+    // stop the clock timer.
+    clearInterval(interval);
   }
 }
 
 // Function to match two cards and if match, make them disappear.
 function matchCards(){
+  // Variable to choose two cards in a move.
   var choices = 2;
+
+  // Variable to hide card by setting to opacity zero.
   var hideCard = 0;
+
   if($('.chosen').length == choices){
     countMoves();
     removeStars();
@@ -79,6 +102,7 @@ function matchCards(){
       $('.chosen').each(function(){
         $(this).removeClass('chosen');
       });
+      clearInterval(clock);
       allMatch();
     }else{
       // Flip cards that do not match.
@@ -98,30 +122,39 @@ function restartGame(){
 
 // Function to add a leading zero to the time when necessary.
 function addZero(timeDisplay) {
-  if (timeDisplay < 10) {
-    timeDisplay = '0' + timeDisplay
+  // Variable to identify all numbers below 10.
+  var singleDigit = 10;
+
+  // Variable to add a number in front of single digit numbers.
+  var addZero = 0;
+
+  if (timeDisplay < singleDigit) {
+    timeDisplay = '' + addZero + '' + timeDisplay;
   }
   return timeDisplay;
 }
 
 // Function for game timer
 function clock() {
-  totalSeconds = totalSeconds + 1;
+  totalSeconds++;
+
+  //Variables for hours, minutes and seconds calculated.
   var hours = Math.floor(totalSeconds /3600);
   var minutes = Math.floor((totalSeconds - hours * 3600) / 60);
   var seconds = totalSeconds - (hours * 3600 + minutes * 60);
 
+  // Send clock timer data to html id=finalTime.
   var finalTime = document.getElementById('timer').innerHTML = addZero(hours)
   + ':' + addZero(minutes) + ':' + addZero(seconds);
+
   return finalTime;
 }
 
+// Run the methods.
 function main(){
-// Run the methods
   shuffle(cards);
   mapToCards();
   onClick();
-  setInterval(clock, 1000);
 }
 
 main()
