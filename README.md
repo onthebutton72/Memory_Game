@@ -13,7 +13,7 @@ will track how long it takes you to complete all matches, how many tries and
 will assign a star rating based on your performance.
 
 ## Setup
-### View the Live Demo [here](https://zombiepotatogun.hostingerapp.com/memorygame)<br>
+### View the Live Demo [here](http://memorygame.16mb.com)<br>
 
 Setup is simple, to start the game just click on any two cards.  
 
